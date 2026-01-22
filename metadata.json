@@ -1,0 +1,7 @@
+{
+  "name": "Cheras Sparkle Cleaners",
+  "description": "Premium home and office cleaning services specifically for the Cheras community. Features an AI-powered instant quote generator.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
