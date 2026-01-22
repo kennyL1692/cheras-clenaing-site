@@ -3,7 +3,9 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { QuoteRequest, QuoteResult } from "../types";
 
 export const getAIQuote = async (request: QuoteRequest): Promise<QuoteResult> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  // Safe access to API_KEY to prevent ReferenceError: process is not defined
+  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+  const ai = new GoogleGenAI({ apiKey: apiKey || '' });
   
   const prompt = `
     Act as a professional cleaning service estimator for a company based in Cheras, Kuala Lumpur, Malaysia. 
@@ -39,15 +41,22 @@ export const getAIQuote = async (request: QuoteRequest): Promise<QuoteResult> =>
       },
     });
 
-    return JSON.parse(response.text.trim()) as QuoteResult;
+    const text = response.text;
+    if (!text) throw new Error("Empty response from AI");
+    
+    return JSON.parse(text.trim()) as QuoteResult;
   } catch (error) {
     console.error("Error generating quote:", error);
-    // Fallback if AI fails
+    // Fallback if AI fails or network issues occur
     return {
       estimatedPrice: "RM 120 - RM 250",
       duration: "3 - 5 Hours",
-      recommendation: "We suggest a weekly basic clean for standard maintenance in Cheras.",
-      tips: ["Vacuum high-traffic areas daily", "Use microfiber cloths for dusting", "Keep a squeegee in the shower"]
+      recommendation: "We suggest a weekly basic clean for standard maintenance in Cheras properties.",
+      tips: [
+        "Vacuum high-traffic areas daily",
+        "Use microfiber cloths for dusting to trap allergens",
+        "Keep a squeegee in the shower to prevent water spots"
+      ]
     };
   }
 };
