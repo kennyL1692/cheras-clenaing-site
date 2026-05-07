@@ -1,7 +1,5 @@
 {
   "name": "Cheras Sparkle Cleaners",
-  "description": "Premium home and office cleaning services specifically for the Cheras community. Features an AI-powered instant quote generator.",
-  "requestFramePermissions": [
-    "geolocation"
-  ]
+  "description": "Premium home and office cleaning services for the Cheras community with a front-end demo quote calculator and WhatsApp-first booking.",
+  "requestFramePermissions": []
 }
