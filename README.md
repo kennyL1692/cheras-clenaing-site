@@ -1,20 +1,18 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Cheras Sparkle Cleaners
 
-# Run and deploy your AI Studio app
+A premium React + Vite landing page for a Cheras-based cleaning service. The site includes a polished hero, service packages, trust-building sections, local service areas, testimonials, and an interactive **demo-only** quote calculator.
 
-This contains everything you need to run your app locally.
+## Demo quote calculator
 
-View your app in AI Studio: https://ai.studio/apps/drive/10ot45QAe9a7fa3_a7jGZtOfyOdOFtVqF
+The quote calculator is intentionally front-end only. It uses local pricing rules in `services/quoteCalculator.ts` and does **not** connect to Gemini, OpenAI, or any other external AI/API service.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app:
    `npm run dev`
+3. Build for production:
+   `npm run build`
