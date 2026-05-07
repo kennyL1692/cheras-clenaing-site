@@ -1,50 +1,63 @@
-
 import React, { useState } from 'react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-b border-slate-100 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center gap-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                </svg>
-              </div>
-              <span className="text-xl font-bold text-slate-900 tracking-tight">Cheras<span className="text-blue-600">Sparkle</span></span>
+    <nav className="sticky top-0 z-50 border-b border-white/60 bg-white/80 shadow-sm backdrop-blur-2xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
+          <a href="#top" className="flex items-center gap-3" aria-label="Cheras Sparkle home">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white shadow-lg shadow-blue-500/25">
+              <span className="text-2xl">✦</span>
             </div>
-          </div>
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-slate-600 hover:text-blue-600 transition font-medium">Services</a>
-            <a href="#quote" className="text-slate-600 hover:text-blue-600 transition font-medium">Free Quote</a>
-            <a href="#about" className="text-slate-600 hover:text-blue-600 transition font-medium">About</a>
-            <a href="https://wa.me/60123456789" className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-blue-700 transition shadow-md shadow-blue-200">
+            <div>
+              <span className="block font-display text-xl font-extrabold tracking-tight text-slate-950">Cheras<span className="text-blue-600">Sparkle</span></span>
+              <span className="block text-xs font-semibold uppercase tracking-[0.25em] text-cyan-600">Premium Cleaners</span>
+            </div>
+          </a>
+
+          <div className="hidden items-center gap-8 md:flex">
+            <a href="#services" className="text-sm font-semibold text-slate-600 transition hover:text-blue-600">Services</a>
+            <a href="#quote" className="text-sm font-semibold text-slate-600 transition hover:text-blue-600">Demo Quote</a>
+            <a href="#proof" className="text-sm font-semibold text-slate-600 transition hover:text-blue-600">Proof</a>
+            <a href="#about" className="text-sm font-semibold text-slate-600 transition hover:text-blue-600">About</a>
+            <a href="https://wa.me/60123456789" className="rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/25 transition hover:-translate-y-0.5 hover:shadow-xl">
               Book via WhatsApp
             </a>
           </div>
-          <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-slate-600 hover:text-slate-900">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-full border border-slate-200 p-3 text-slate-700 md:hidden"
+            aria-label="Toggle navigation"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
       </div>
+
       {isOpen && (
-        <div className="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-1">
-          <a href="#services" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">Services</a>
-          <a href="#quote" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">Free Quote</a>
-          <a href="#about" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">About</a>
-          <a href="https://wa.me/60123456789" className="block w-full text-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold mt-4">Book via WhatsApp</a>
+        <div className="border-t border-slate-100 bg-white/95 px-4 pb-6 pt-2 shadow-xl backdrop-blur-xl md:hidden">
+          {[
+            ['Services', '#services'],
+            ['Demo Quote', '#quote'],
+            ['Proof', '#proof'],
+            ['About', '#about'],
+          ].map(([label, href]) => (
+            <a key={href} href={href} onClick={() => setIsOpen(false)} className="block rounded-2xl px-4 py-4 font-semibold text-slate-700 hover:bg-slate-50">
+              {label}
+            </a>
+          ))}
+          <a href="https://wa.me/60123456789" className="mt-3 block rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-4 text-center font-bold text-white shadow-lg">
+            Book via WhatsApp
+          </a>
         </div>
       )}
     </nav>
